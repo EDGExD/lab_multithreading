@@ -17,6 +17,13 @@ public class BetterRadar {
     }
 
     private void launchPatriot(Scud enemyMissile) {
-        launcher.launch(battery, rocketCount, enemyMissile);
+        Runnable launchPatriotTask = launcher.launch(battery, rocketCount, enemyMissile);
+        Thread patriot = new Thread(launchPatriotTask);
+        patriot.start();
+        try {
+            patriot.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
