@@ -51,4 +51,20 @@ class RadarTest {
 
     }
 
+    @Test
+    void launchZeroPatriotOnceWhenNoticesAScudMissle()
+    {
+        when(executorService.submit(any(Runnable.class))).thenAnswer(invocationOnMock -> {
+            ((Runnable) invocationOnMock.getArgument(0)).run();
+            return null;
+        });
+
+        BetterRadar radar = new BetterRadar(0,batteryMock,executorService);
+        Scud enemyMissle = new Scud();
+        radar.notice(enemyMissle);
+
+        verify(batteryMock,times(0)).launchPatriot(enemyMissle);
+
+    }
+
 }
