@@ -19,7 +19,7 @@ class RadarTest {
     @Mock
     private ExecutorService executorService;
 
-    @Test
+    @RepeatedTest(10)
     void launchPatriotOnceWhenNoticesAScudMissle() {
 
         when(executorService.submit(any(Runnable.class))).thenAnswer(invocationOnMock -> {
@@ -35,7 +35,7 @@ class RadarTest {
 
     }
 
-    @Test
+    @RepeatedTest(5)
     void launchThreePatriotOnceWhenNoticesAScudMissle()
     {
         when(executorService.submit(any(Runnable.class))).thenAnswer(invocationOnMock -> {
@@ -51,7 +51,7 @@ class RadarTest {
 
     }
 
-    @Test
+    @RepeatedTest(15)
     void launchZeroPatriotOnceWhenNoticesAScudMissle()
     {
         when(executorService.submit(any(Runnable.class))).thenAnswer(invocationOnMock -> {
