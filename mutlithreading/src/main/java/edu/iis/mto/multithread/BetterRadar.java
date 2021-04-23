@@ -13,7 +13,17 @@ public class BetterRadar {
         this.executorService=executorService;
     }
 
-    public notice(){
+    public void notice(Scud enemyMissile){
+        launchPatriot(enemyMissile, rocketCount);
+    }
 
+    private void launchPatriot(Scud enemyMissile, int rocketCount) {
+        Runnable launchPatriotTask = () -> {
+            for (int i = 0; i < rocketCount; i++) {
+                patriotBattery.launchPatriot(enemyMissile);
+            }
+        };
+
+        executorService.submit(launchPatriotTask);
     }
 }
