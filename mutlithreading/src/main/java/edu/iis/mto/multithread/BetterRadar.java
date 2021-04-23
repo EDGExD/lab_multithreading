@@ -4,10 +4,12 @@ public class BetterRadar {
 
     private PatriotBattery battery;
     private TaskService taskService;
+    private int numberOfMissles;
 
-    public BetterRadar(PatriotBattery battery, TaskService taskService) {
+    public BetterRadar(PatriotBattery battery, TaskService taskService, int numberOfMissles) {
         this.battery = battery;
         this.taskService = taskService;
+        this.numberOfMissles = numberOfMissles;
     }
 
     public void notice(Scud enemyMissle) {
@@ -16,7 +18,7 @@ public class BetterRadar {
 
     private void launchPatriot(Scud enemyMissle) {
         Runnable launchPatriotTask = () -> {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < numberOfMissles; i++) {
                 battery.launchPatriot(enemyMissle);
             }
         };
