@@ -22,4 +22,12 @@ class RadarTest {
         radar.notice(enemyMissle);
         verify(batteryMock).launchPatriot(enemyMissle);
     }
+
+    @RepeatedTest(100)
+    void launchPatriotTenTimesWhenNoticesAScudMissle() {
+        BetterRadar radar = new BetterRadar(batteryMock, 10);
+        Scud enemyMissle = new Scud();
+        radar.notice(enemyMissle);
+        verify(batteryMock, times(10)).launchPatriot(enemyMissle);
+    }
 }
